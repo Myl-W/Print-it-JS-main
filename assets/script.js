@@ -17,28 +17,20 @@ const slides = [
 	}
 ]
 
-// // Sélection de l'élément bouton par son ID
-// var bouton = document.getElementById("monBouton");
+// Sélection des flèches de navigation
+const arrowLeft = document.querySelector('.arrow_left');
+const arrowRight = document.querySelector('.arrow_right');
 
-// // Ajout de l'event listener pour le clic de souris
-// bouton.addEventListener("click", function() {
-//     // Code à exécuter lorsque le bouton est cliqué
-//     console.log("Le bouton a été cliqué !");
-// });
+// Event listener pour la flèche gauche
+arrowLeft.addEventListener('click', () => {
+  // Code à exécuter lors du clic sur la flèche gauche
+  // Par exemple, naviguer vers la diapositive précédente du carrousel
+  console.log("Clic sur la flèche gauche");
+});
 
-
-// function createCarrousel(position){
-// 	const banner = document.querySelector("banner")
-
-// 		const element = slides[position];
-// 		//console.log(élément);
-// 		const img =document.createElement(img);
-// 		img.setAttribute("class", "banner-img");
-// 		img.setAttribute("src", "/assets/images/slideshow/"+ element.image);
-// 		img.setAttribute("alt", "banner Print-it");
-// 		const p = document.createElement(p);
-// 		p.innerhtml= element.tagLine;
-
-// 		banner.append(p);
-
-new Carousel (document.querySelector)
+// Event listener pour la flèche droite
+arrowRight.addEventListener('click', () => {
+  // Code à exécuter lors du clic sur la flèche droite
+  // Par exemple, naviguer vers la diapositive suivante du carrousel
+  console.log("Clic sur la flèche droite");
+});
