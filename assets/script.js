@@ -1,71 +1,66 @@
 const slides = [
 	{
-		"image": "slide1.jpg",
+		"image": "./assets/images/slideshow/slide1.jpg",
 		"tagLine": "Impressions tous formats <span>en boutique et en ligne</span>"
 	},
 	{
-		"image": "slide2.jpg",
+		"image": "./assets/images/slideshow/slide2.jpg",
 		"tagLine": "Tirages haute définition grand format <span>pour vos bureaux et events</span>"
 	},
 	{
-		"image": "slide3.jpg",
+		"image": "./assets/images/slideshow/slide3.jpg",
 		"tagLine": "Grand choix de couleurs <span>de CMJN aux pantones</span>"
 	},
 	{
-		"image": "slide4.png",
+		"image": "./assets/images/slideshow/slide4.png",
 		"tagLine": "Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
-
-// Sélection des flèches de navigation gauche et droite
-const arrowLeft = document.querySelector('.arrow_left');
-const arrowRight = document.querySelector('.arrow_right');
-
-// Sélection des éléments d'image et de ligne de texte
-const imageElement = document.querySelector('.banner-img');
-const tagLineElement = document.querySelector('.banner-tagline');
-
-// Sélection de tous les points (bullet points)
-const dots = document.querySelectorAll('.dot');
-
-// Sélection du conteneur des diapositives
-const slidesContainer = document.querySelector('.slides-container');
-
-// Variable pour suivre la diapositive actuelle
+// Définition de la variable currentSlide avec une valeur initiale de 0 (diapositive par défaut)
 let currentSlide = 0;
 
-// Ajout des écouteurs d'événement pour les clics sur les flèches gauche et droite
-arrowLeft.addEventListener('click', navigateSlide);
-arrowRight.addEventListener('click', navigateSlide);
+// Définition de la fonction setSlide avec un argument slideNum
+function setSlide(slideNum) {
+	// Attribution de la valeur de slideNum à la variable currentSlide
+	currentSlide = slideNum;
 
-// Ajout des écouteurs d'événement pour les clics sur les points (bullet points)
-dots.forEach((dot, index) => dot.addEventListener('click', () => navigateSlide(index)));
+	// Sélection de l'élément de la bannière d'image avec la classe "banner-img"
+	const bannerImgElement = document.querySelector(".banner-img");
+	// Modification de la source de l'image de la bannière avec la valeur de l'image correspondant à la diapositive actuelle
+	bannerImgElement.src = slides[slideNum].image; // bannerImgElement.src = slides[slideNum]["image"] 
 
-// Fonction pour naviguer vers une diapositive spécifique ou à la suivante/précédente
-function navigateSlide(index) {
-	// Si un index est passé en paramètre, on met à jour la diapositive actuelle
-	if (index !== undefined) {
-		currentSlide = index;
-	} else {
-		// Sinon, on détermine la diapositive suivante ou précédente en fonction de la flèche cliquée
-		currentSlide = (currentSlide + (this === arrowLeft ? slides.length - 1 : 1)) % slides.length;
-	}
-	// Mise à jour de l'affichage de la diapositive
-	updateSlide();
+	// Sélection de l'élément de texte de la bannière avec l'ID "banner" suivi de la balise <p>
+	const bannerTextElement = document.querySelector("#banner > p");
+	// Modification du contenu HTML de l'élément de texte de la bannière avec la valeur de la légende correspondant à la diapositive actuelle
+	bannerTextElement.innerHTML = slides[slideNum].tagLine;
+
+	// Sélection du point (dot) correspondant à la diapositive actuelle
+	const selectedDot = document.querySelector("#dot" + slideNum)
+	// Ajout de la classe 'dot_selected' au point sélectionné pour le mettre en surbrillance
+	selectedDot.classList.add('dot_selected');
+
 }
 
-// Fonction pour mettre à jour l'affichage de la diapositive
-function updateSlide() {
-	// Suppression de la classe 'active' de tous les points
-	dots.forEach(dot => dot.classList.remove('active'));
-
-	// Ajout de la classe 'active' au point correspondant à la diapositive actuelle
-	dots[currentSlide].classList.add('active');
-
-	// Mise à jour de l'image et du texte correspondant à la diapositive actuelle
-	imageElement.src = slides[currentSlide].image;
-	tagLineElement.innerHTML = slides[currentSlide].tagLine;
+// Définition de la fonction clickArrowRight qui sera appelée lorsqu'une flèche droite est cliquée
+function clickArrowRight() {
+	// Appel de la fonction setSlide avec l'argument correspondant à la diapositive suivante (utilisation de l'opérateur de modulo pour boucler entre les diapositives)
+	setSlide((currentSlide + 1) % slides.lenght);
+	// Affichage d'un message dans la console pour indiquer que la flèche droite a été cliquée
+	console.log("clickArrowRight");
 }
 
-// Mise à jour de l'affichage initial de la diapositive
-updateSlide();
+// Définition de la fonction clickArrowLeft qui sera appelée lorsqu'une flèche gauche est cliquée
+function clickArrowLeft() {
+	// Appel de la fonction setSlide avec l'argument correspondant à la diapositive précédente (utilisation de l'opérateur de modulo pour boucler entre les diapositives)
+	setSlide((currentSlide - 1 + slides.length) % slides.lenght);
+	// Affichage d'un message dans la console pour indiquer que la flèche gauche a été cliquée
+	console.log("clickArrowLeft");
+}
+
+// Ajout d'un Event Listener flèche droite
+const arrowRightElement = document.querySelector(".arrow_right");
+arrowRightElement.addEventListener("click", clickArrowRight);
+
+// Ajout d'un Event Listener flèche gauche
+const arrowLeftElement = document.querySelector(".arrow_left");
+arrowLeftElement.addEventListener("click", clickArrowLeft);

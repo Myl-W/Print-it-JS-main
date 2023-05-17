@@ -75,16 +75,19 @@ p, li {
 	font-size: 16px;
 	line-height: 26px;
 }
+
 .container {
 	max-width: 1440px;
 	margin-inline:auto;
 	padding-inline: 5%;
 }
+
 header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 }
+
 .logo{
 	width: 260px;
 	margin-block: 10px;
@@ -98,6 +101,7 @@ header {
 	color: white;
 	text-decoration: none;
 }
+
 .devis {
 	background-color: var(--secondary-color);
 }
@@ -111,6 +115,7 @@ header {
 	min-height: 470px;
 	position: relative;
 }
+
 .banner-img {
 	position: absolute;
 	width: 100%;
@@ -122,39 +127,30 @@ header {
 
 /* Code CSS en prévision de l'ajout d'un carousel pour la bannière */
 
-.carousel {
-	width: 100%;
-	height: 400px; 
-	position: relative;
-	overflow: hidden;
+.carrousel{
+	display: none;
 }
-  
-.carousel .slides-container {
-	display: flex; /* Affichage des diapositives en ligne */
-	transition: transform 0.3s ease; /* Transition animée lors du défilement */
-}
-  
-.carousel .slide {
-	flex: 0 0 100%;
-}
-  
-  
+
 /* Gestion des fleches du carrousel */
 #banner .arrow {
 	position: absolute;
 }
+
 #banner .arrow_left {
 	left: 10px;
 }
+
 #banner .arrow_right {
 	right: 10px;
 }
+
 /* Gestion des points du carrousel */
 .dots {
 	position: absolute;
 	bottom: 40px;
 	display: flex;
 }
+
 .dot {
 	margin-inline: 5px;
 	width: 13px;
@@ -165,14 +161,12 @@ header {
 	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);;
 }
 
-.dot:first-child {
-	background-color: var(--primary-color);
-}
-
 .dot_selected {
 	background-color: #fff;
 }
+
 /* Fin du code CSS pour le carousel */
+
 #banner p {
 	font-family: 'Roboto Slab', sans-serif;
 	font-weight: 900;
@@ -187,12 +181,15 @@ header {
 	font-weight: 400;
 	font-size: 30px;
 }
+
 #about-us {
 	display: flex;
 }
+
 #about-us article, #about-us aside {
 	flex:1;
 }
+
 #about-us li {
 	background: url("./images/tricolor-icon.png") no-repeat left top;
 	font-size: 16px;
@@ -200,7 +197,6 @@ header {
 	padding-left:2em;
 	width: 65%;
 	margin-bottom: 1em;
-
 }
 
 #products {
