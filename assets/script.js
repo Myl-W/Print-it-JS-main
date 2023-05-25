@@ -39,33 +39,51 @@ document.addEventListener("DOMContentLoaded", function() {
 	  bannerImgElement.src = slide.image;
 	  bannerTextElement.innerHTML = slide.tagLine;
   
+	  
 	  // Mise à jour de la classe CSS des points du carrousel
 	  dots.forEach((dot, index) => {
-		// Le point correspondant à la diapositive actuelle obtient la classe "dot_selected"
+		// Le point correspondant à la diapositive actuelle obtient la classe "dot_selected", enlevant à la précédente
 		dot.classList.toggle("dot_selected", index === currentSlide);
 	  });
 	}
+
+	const arrows = document.querySelectorAll(".arrow")
+	for (const arrow of arrows) {
+		arrow.addEventListener("click", (e) => {
+			// Gestionnaire d'événement pour le clic chaque flèche
+			const arrowBtn = e.target
+			const side = arrowBtn.dataset.side
+			if(side == "left"){
+				// Passage à la diapositive précédente en utilisant l'opérateur de modulo pour boucler
+				currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+			} else {
+				currentSlide = (currentSlide + 1) % slides.length;
+			}
+			// Mise à jour de l'affichage de la diapositive
+			updateSlide()
+		})
+	}
   
-	// Gestionnaire d'événement pour le clic sur la flèche gauche
-	arrowLeft.addEventListener("click", () => {
-	  // Passage à la diapositive précédente en utilisant l'opérateur de modulo pour boucler
-	  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+	// // Gestionnaire d'événement pour le clic sur la flèche gauche
+	// arrowLeft.addEventListener("click", (e) => {
+	//   // Passage à la diapositive précédente en utilisant l'opérateur de modulo pour boucler
+	//   currentSlide = (currentSlide - 1 + slides.length) % slides.length;
   
-	  // Mise à jour de l'affichage de la diapositive
-	  updateSlide();
-	});
+	//   // Mise à jour de l'affichage de la diapositive
+	//   updateSlide();
+	// });
   
-	// Gestionnaire d'événement pour le clic sur la flèche droite
-	arrowRight.addEventListener("click", () => {
-	  // Passage à la diapositive suivante en utilisant l'opérateur de modulo pour boucler
-	  currentSlide = (currentSlide + 1) % slides.length;
+	// // Gestionnaire d'événement pour le clic sur la flèche droite
+	// arrowRight.addEventListener("click", (e) => {
+	//   // Passage à la diapositive suivante en utilisant l'opérateur de modulo pour boucler
+	//   currentSlide = (currentSlide + 1) % slides.length;
   
-	  // Mise à jour de l'affichage de la diapositive
-	  updateSlide();
-	});
+	//   // Mise à jour de l'affichage de la diapositive
+	//   updateSlide();
+	// });
   
-	// Affichage de la première diapositive lors du chargement de la page
-	updateSlide();
+	// // Affichage de la première diapositive lors du chargement de la page
+	// updateSlide();
   });
   
   
