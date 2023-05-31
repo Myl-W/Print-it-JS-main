@@ -41,10 +41,22 @@ document.addEventListener("DOMContentLoaded", function() {
   
 	  
 	  // Mise à jour de la classe CSS des points du carrousel
-	  dots.forEach((dot, index) => {
-		// Le point correspondant à la diapositive actuelle obtient la classe "dot_selected", enlevant à la précédente
-		dot.classList.toggle("dot_selected", index === currentSlide);
+	  dots.forEach((dot, i) => {
+		// Supprime la classe "dot_selected" de tous les points
+		dot.classList.toggle("dot_selected", i === currentSlide);
+		// Ajoute la classe "dot_selected" uniquement au point correspondant à la diapositive actuelle
+		dots[currentSlide].classList.add("dot_selected");
 	  });
+
+	  // Sélection de la div contenant les points du carrousel
+	  const dotsContainer = document.querySelector('.dots');
+	  dotsContainer.innerHTML = '';
+	  for (let i =0; i < slides.length; i++) {
+		const dot = document.createElement('span');
+		dot.classList.add('dot')
+		dot.setAttribute ('data-id',i);
+		dotsContainer.appendChild(dot);
+	  }
 	}
 
 	const arrows = document.querySelectorAll(".arrow")
@@ -64,26 +76,8 @@ document.addEventListener("DOMContentLoaded", function() {
 		})
 	}
   
-	// // Gestionnaire d'événement pour le clic sur la flèche gauche
-	// arrowLeft.addEventListener("click", (e) => {
-	//   // Passage à la diapositive précédente en utilisant l'opérateur de modulo pour boucler
-	//   currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  
-	//   // Mise à jour de l'affichage de la diapositive
-	//   updateSlide();
-	// });
-  
-	// // Gestionnaire d'événement pour le clic sur la flèche droite
-	// arrowRight.addEventListener("click", (e) => {
-	//   // Passage à la diapositive suivante en utilisant l'opérateur de modulo pour boucler
-	//   currentSlide = (currentSlide + 1) % slides.length;
-  
-	//   // Mise à jour de l'affichage de la diapositive
-	//   updateSlide();
-	// });
-  
-	// // Affichage de la première diapositive lors du chargement de la page
-	// updateSlide();
+	// Affichage de la première diapositive lors du chargement de la page
+	updateSlide();
   });
   
   
