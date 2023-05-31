@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
 	  // Mise à jour de la classe CSS des points du carrousel
 	  dots.forEach((dot, i) => {
 		// Supprime la classe "dot_selected" de tous les points
-		dot.classList.toggle("dot_selected", i === currentSlide);
+		dot.classList.remove("dot_selected");
 		// Ajoute la classe "dot_selected" uniquement au point correspondant à la diapositive actuelle
 		dots[currentSlide].classList.add("dot_selected");
 	  });
@@ -54,7 +54,9 @@ document.addEventListener("DOMContentLoaded", function() {
 	  for (let i =0; i < slides.length; i++) {
 		const dot = document.createElement('span');
 		dot.classList.add('dot')
-		dot.setAttribute ('data-id',i);
+		if (i === currentSlide) {
+			dot.classList.add ("dot_selected");
+		}
 		dotsContainer.appendChild(dot);
 	  }
 	}
