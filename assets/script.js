@@ -56,8 +56,7 @@ document.addEventListener("DOMContentLoaded", function() {
 		dot.classList.add('dot')
 		if (i === currentSlide) {
 			dot.classList.add ("dot_selected");
-		}
-		dotsContainer.appendChild(dot);
+		}dotsContainer.appendChild(dot);
 	  }
 	}
 
